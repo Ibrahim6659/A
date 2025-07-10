@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Connexion | Burkina Connect Hub</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="auth">
+    <h1>Connexion</h1>
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email" required /><br>
+      <input type="password" id="password" placeholder="Mot de passe" required /><br>
+      <button type="submit">Se connecter</button><br>
+    </form>
+    <p>Pas encore de compte ? <a href="register.html">S'inscrire</a></p>
+  </main>
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const res = await fetch("http://localhost:3001/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        localStorage.setItem("token", data.token);
+        alert("Connexion réussie !");
+        window.location.href = "profile.html";
+      } else {
+        alert("Erreur : " + data.message);
+      }
+    });
+  </script>
+</body>
+</html>

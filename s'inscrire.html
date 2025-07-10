@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inscription | Burkina Connect Hub</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="auth">
+    <h1>Créer un compte</h1>
+    <form id="registerForm">
+      <input type="text" id="name" placeholder="Nom complet" required /><br>
+      <input type="email" id="email" placeholder="Email" required /><br>
+      <input type="password" id="password" placeholder="Mot de passe" required /><br>
+      <button type="submit">S'inscrire</button><br>
+    </form>
+    <p>Déjà un compte ? <a href="login.html">Connexion</a></p>
+  </main>
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const res = await fetch("http://localhost:3001/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password })
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        alert("Inscription réussie !");
+        window.location.href = "login.html";
+      } else {
+        alert("Erreur : " + data.message);
+      }
+    });
+  </script>
+</body>
+</html>

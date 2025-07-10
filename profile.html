@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mon Profil | Burkina Connect Hub</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+    .profile input, textarea {
+      width: 100%;
+      padding: 0.5em;
+      margin-bottom: 1em;
+    }
+    .profile button {
+      padding: 0.6em 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mon Profil</h1>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="settings.html">Paramètres</a>
+      <a href="logout.html">Déconnexion</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="profile">
+      <h2>Informations personnelles</h2>
+
+      <img id="profileImage" class="profile-pic" src="img/default-avatar.png" alt="Photo de profil" />
+
+      <form id="profileForm">
+        <label>Nom complet :</label>
+        <input type="text" id="name" />
+
+        <label>Email :</label>
+        <input type="email" id="email" disabled />
+
+        <label>Téléphone :</label>
+        <input type="text" id="phone" />
+
+        <label>Biographie :</label>
+        <textarea id="bio" rows="4"></textarea>
+
+        <label>Changer la photo de profil (URL d’image) :</label>
+        <input type="text" id="avatarUrl" placeholder="https://...jpg" />
+
+        <button type="submit">Modifier mon profil</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Burkina Connect Hub</p>
+  </footer>
+
+  <script src="js/profile.js"></script>
+</body>
+</html>
